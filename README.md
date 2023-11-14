@@ -15,19 +15,30 @@ cryptography - это библиотека Python для обеспечения 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=$+pip+install+cryptography)](https://git.io/typing-svg)
 
 <h3 align="center">Описание кода</h3> 
-def generate_key(): - Это начало определения функции generate_key, которая генерирует случайный ключ шифрования с использованием метода Fernet.generate_key() и возвращает его./n
-def load_key(file_path): - Это начало определения функции load_key, которая принимает параметр file_path (путь к файлу ключа). Она пытается открыть файл, считать ключ из файла, и возвращает ключ. Если файл не найден, она генерирует новый ключ, записывает его в файл и возвращает новый ключ./n
-def encrypt_data(data, key): - Это начало определения функции encrypt_data, которая принимает данные и ключ, создает объект Fernet с использованием ключа, затем шифрует данные и возвращает зашифрованный результат./n
-def decrypt_data(encrypted_data, key): - Это начало определения функции decrypt_data, которая принимает зашифрованные данные и ключ, создает объект Fernet с использованием ключа, затем дешифрует данные и возвращает дешифрованный результат./n
-def decrypt_data_from_file(file_path, key): - Это начало определения функции decrypt_data_from_file, которая принимает путь к файлу и ключ. Она открывает файл, считывает зашифрованные данные из файла, затем дешифрует и возвращает дешифрованный результат./n
-try: - Это начало блока, в котором происходит попытка выполнить определенный блок кода. В этом случае, мы пытаемся открыть файл users.json для чтения./n
-with open('users.json', 'r', encoding='utf-8') as file: - Это открытие файла users.json в режиме чтения с указанием кодировки utf-8. Файл будет открыт как объект file./n
-key = load_key('secret.key') - Это вызов функции load_key для загрузки ключа из файла secret.key./n
-encrypted_data = encrypt_data(data, key) - Это вызов функции encrypt_data для шифрования данных из файла с использованием загруженного ключа./n
+def generate_key(): - Это начало определения функции generate_key, которая генерирует случайный ключ шифрования с использованием метода Fernet.generate_key() и возвращает его.
+
+def load_key(file_path): - Это начало определения функции load_key, которая принимает параметр file_path (путь к файлу ключа). Она пытается открыть файл, считать ключ из файла, и возвращает ключ. Если файл не найден, она генерирует новый ключ, записывает его в файл и возвращает новый ключ.
+
+def encrypt_data(data, key): - Это начало определения функции encrypt_data, которая принимает данные и ключ, создает объект Fernet с использованием ключа, затем шифрует данные и возвращает зашифрованный результат.
+
+def decrypt_data(encrypted_data, key): - Это начало определения функции decrypt_data, которая принимает зашифрованные данные и ключ, создает объект Fernet с использованием ключа, затем дешифрует данные и возвращает дешифрованный результат.
+
+def decrypt_data_from_file(file_path, key): - Это начало определения функции decrypt_data_from_file, которая принимает путь к файлу и ключ. Она открывает файл, считывает зашифрованные данные из файла, затем дешифрует и возвращает дешифрованный результат.
+
+try: - Это начало блока, в котором происходит попытка выполнить определенный блок кода. В этом случае, мы пытаемся открыть файл users.json для чтения.
+with open('users.json', 'r', encoding='utf-8') as file: - Это открытие файла users.json в режиме чтения с указанием кодировки utf-8. Файл будет открыт как объект file.
+
+key = load_key('secret.key') - Это вызов функции load_key для загрузки ключа из файла secret.key.
+
+encrypted_data = encrypt_data(data, key) - Это вызов функции encrypt_data для шифрования данных из файла с использованием загруженного ключа.
+
 with open('users_encrypted.json', 'w', encoding='utf-8') as file: - Это открытие файла users_encrypted.json в режиме записи с указанием кодировки utf-8. Файл будет открыт как объект file.
-json.dump({"data": encrypted_data.decode()}, file) - Это запись зашифрованных данных в формате JSON в файл users_encrypted.json./n
+
+json.dump({"data": encrypted_data.decode()}, file) - Это запись зашифрованных данных в формате JSON в файл users_encrypted.json.
+
 decrypted_data = decrypt_data_from_file('users_encrypted.json', key) - Это вызов функции decrypt_data_from_file для дешифровки данных из файла users_encrypted.json с использованием ключа.
-Далее идет блок кода, где дешифрованные данные записываются в файл decrypted_users.json и ключ сохраняется в файл decryption_key.key./n
-except (FileNotFoundError, json.JSONDecodeError) as e: - Это начало блока, который выполняется в случае возникновения исключений FileNotFoundError или json.JSONDecodeError. В данном случае, если такие исключения возникнут, будет выведено сообщение об ошибке. /n
+Далее идет блок кода, где дешифрованные данные записываются в файл decrypted_users.json и ключ сохраняется в файл decryption_key.key.
+
+except (FileNotFoundError, json.JSONDecodeError) as e: - Это начало блока, который выполняется в случае возникновения исключений FileNotFoundError или json.JSONDecodeError. В данном случае, если такие исключения возникнут, будет выведено сообщение об ошибке. 
 
 Сылка на призентацию(будет редактироваться): https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&
