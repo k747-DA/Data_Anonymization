@@ -1,4 +1,4 @@
-<h1 align="center">Data anonymization<h1>
+<h1 align="center">Data anonymization</h1>
 Задание по предмету Информационная безопасность (2 группа).
 
 Задание 1 группы тут: https://github.com/AhmetshaLee/IS-database-project#is-database-project (ИС-проект базы данных)
