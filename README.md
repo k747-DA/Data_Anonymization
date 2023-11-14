@@ -1,3 +1,4 @@
+<h1 align="center">Data anonymization<h1>
 Задание по предмету Информационная безопасность (2 группа).
 
 Задание 1 группы тут: https://github.com/AhmetshaLee/IS-database-project#is-database-project (ИС-проект базы данных)
@@ -12,6 +13,7 @@ cryptography - это библиотека Python для обеспечения 
 Использование взтроеной библиотеки Python json, которая предоставляет функции для работы с данными в формате JSON.
 
 Для установки cryptography нужно выполнить команду:
-$ pip install cryptography
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=$+pip+install+cryptography)](https://git.io/typing-svg)
 
 Сылка на призентацию(будет редактироваться): https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&
