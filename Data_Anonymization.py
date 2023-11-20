@@ -1,66 +1,59 @@
-# Этот код импортирует класс Fernet из библиотеки cryptography.fernet, который позволяет нам использовать алгоритм шифрования Fernet для шифрования и дешифрования данных.
 from cryptography.fernet import Fernet
+import pandas as pd
 import json
+import openpyxl
 
-
-def generate_key():  # Это начало определения функции generate_key, которая генерирует случайный ключ шифрования с использованием метода Fernet.generate_key() и возвращает его.
+# Генерация ключа
+def generate_key():
     return Fernet.generate_key()
 
-
-# Это начало определения функции load_key, которая принимает параметр file_path (путь к файлу ключа).
-# Она пытается открыть файл, считать ключ из файла, и возвращает ключ.
-# Если файл не найден, она генерирует новый ключ, записывает его в файл и возвращает новый ключ.
-def load_key(file_path):
+# Загрузка ключа
+def load_key():
     try:
-        with open(file_path, 'rb') as key_file:
+        with open('secret.key', 'rb') as key_file:
             key = key_file.read()
         return key
     except FileNotFoundError:
         print("Ключ шифрования не найден. Генерируем новый ключ...")
         key = generate_key()
-        with open(file_path, 'wb') as key_file:
+        with open('secret.key', 'wb') as key_file:
             key_file.write(key)
         return key
 
-# Это начало определения функции encrypt_data,
-# которая принимает данные и ключ, создает объект Fernet с использованием ключа,
-# затем шифрует данные и возвращает зашифрованный результат
-def encrypt_data(data, key):
+# Функция для обезличивания данных
+def anonymize_data(data, columns):
+    key = load_key()
     f = Fernet(key)
-    return f.encrypt(data.encode())
+    for column in columns:
+        if column in data:
+            data[column] = f.encrypt(str(data[column]).encode()).decode()
+    return data
 
-#  Это начало определения функции decrypt_data, которая принимает зашифрованные данные и ключ,
-#  создает объект Fernet с использованием ключа, затем дешифрует данные и возвращает дешифрованный результат.
-def decrypt_data(encrypted_data, key):
+# Функция для расшифровки данных
+def decrypt_data(data, columns):
+    key = load_key()
     f = Fernet(key)
-    return f.decrypt(encrypted_data).decode()
+    for column in columns:
+        if column in data:
+            data[column] = f.decrypt(data[column].encode()).decode()
+    return data
 
-# Это начало определения функции decrypt_data_from_file, которая принимает путь к файлу и ключ.
-# Она открывает файл, считывает зашифрованные данные из файла, затем дешифрует и возвращает дешифрованный результат.
-def decrypt_data_from_file(file_path, key):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        encrypted_data = json.load(file)["data"].encode()
-    f = Fernet(key)
-    return f.decrypt(encrypted_data).decode()
+# Получение данных из файла
+with open('users.json', 'r', encoding='utf-8') as json_data:
+    users = json.load(json_data)
 
-#Это начало блока, в котором происходит попытка выполнить определенный блок кода.
-# В этом случае, мы пытаемся открыть файл users.json для чтения.
-try:
-    #Это открытие файла users.json в режиме чтения с указанием кодировки utf-8. Файл будет открыт как объект file.
-    with open('users.json', 'r', encoding='utf-8') as file:
-        data = file.read()
-    key = load_key('secret.key')
+# Обезличивание данных
+anonymized_users = [anonymize_data(user, ['last_name', 'birth_date', 'address', 'passport_data', 'phone', 'other_data']) for user in users['users']]
+with open('anonymized_users.json', 'w', encoding='utf-8') as file:
+    json.dump(anonymized_users, file, indent=4, ensure_ascii=False)
 
-    encrypted_data = encrypt_data(data, key)
-    with open('users_encrypted.json', 'w', encoding='utf-8') as file:
-        json.dump({"data": encrypted_data.decode()}, file)
-    print("Данные успешно зашифрованы и сохранены в файл users_encrypted.json")
+# Получение обезличенных данных из файла
+with open('anonymized_users.json', 'r', encoding='utf-8') as json_data:
+    anonymized_users = json.load(json_data)
 
-    decrypted_data = decrypt_data_from_file('users_encrypted.json', key)
-    with open('decrypted_users.json', 'w', encoding='utf-8') as file:
-        json.dump({"data": decrypted_data}, file)
-    with open('decryption_key.key', 'wb') as key_file:
-        key_file.write(key)
-    print("Зашифрованные данные успешно расшифрованы и сохранены в файл decrypted_users.json")
-except (FileNotFoundError, json.JSONDecodeError) as e:
-    print("Не удалось зашифровать/расшифровать данные из файла. Пожалуйста, убедитесь, что файлы существуют и содержат корректные данные.")
+# Расшифровка данных
+decrypted_users = [decrypt_data(user, ['last_name', 'birth_date', 'address', 'passport_data', 'phone', 'other_data']) for user in anonymized_users]
+
+# Запись в файл JSON
+with open('decrypted_users.json', 'w', encoding='utf-8') as file:
+    json.dump(decrypted_users, file, indent=4, ensure_ascii=False)
