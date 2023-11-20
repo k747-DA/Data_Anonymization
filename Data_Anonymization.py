@@ -51,9 +51,15 @@ with open('anonymized_users.json', 'w', encoding='utf-8') as file:
 with open('anonymized_users.json', 'r', encoding='utf-8') as json_data:
     anonymized_users = json.load(json_data)
 
+#запись в эксель файл засшифрованных данных
+dec=pd.DataFrame(anonymized_users).to_excel("anon.xlsx")
+
 # Расшифровка данных
 decrypted_users = [decrypt_data(user, ['last_name', 'birth_date', 'address', 'passport_data', 'phone', 'other_data']) for user in anonymized_users]
 
 # Запись в файл JSON
 with open('decrypted_users.json', 'w', encoding='utf-8') as file:
     json.dump(decrypted_users, file, indent=4, ensure_ascii=False)
+
+#запись в эксель файл разсшифрованных данных
+dec=pd.DataFrame(decrypted_users).to_excel("decrypted.xlsx")
