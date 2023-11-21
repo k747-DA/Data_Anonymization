@@ -1,7 +1,6 @@
 from cryptography.fernet import Fernet
 import pandas as pd
 import json
-import openpyxl
 
 # Генерация ключа
 def generate_key():
