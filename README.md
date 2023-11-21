@@ -70,10 +70,6 @@ $ pip install pandas
 
 11. `dec=pd.DataFrame(decrypted_users).to_excel("decrypted.xlsx"):` - создает DataFrame с расшифрованными данными и сохраняет его в файл Excel decrypted.xlsx.
 
-## Инструкция по использованию
-
-(добавить инструкцию по использованию)
-
 ## Призентация
 
 Ссылка на призентацию: [Призентация](https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&)
