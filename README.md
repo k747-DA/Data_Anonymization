@@ -28,7 +28,7 @@
 
 ## Используемые библиотеки и язык прогромирования:
 
-### Язык прогромирования выбран: 
+### Язык программирования выбран: 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ### Используемые библиотеки: 
@@ -45,7 +45,7 @@ $ pip install cryptography
 $ pip install pandas
 ```
 
-- ***json*** - использование встроеной библиотеки Python json, которая предоставляет функции для работы с данными в формате .json.
+- ***json*** - использование встроенной библиотеки Python json, которая предоставляет функции для работы с данными в формате .json.
 
 ## Описание кода
 1. `def generate_key():` - здесь определяет функцию generate_key, которая генерирует ключ шифрования с помощью Fernet.generate_key().
@@ -70,9 +70,9 @@ $ pip install pandas
 
 11. `dec=pd.DataFrame(decrypted_users).to_excel("decrypted.xlsx"):` - создает DataFrame с расшифрованными данными и сохраняет его в файл Excel decrypted.xlsx.
 
-## Призентация
+## Презентация
 
-Ссылка на призентацию: [Призентация](https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&)
+Ссылка на презентацию: [Призентация](https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&)
 
 ## Ссылки
 Задача 1 группы: [ИС-проект базы данных](https://github.com/AhmetshaLee/IS-database-project#is-database-project)
