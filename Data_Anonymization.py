@@ -37,28 +37,35 @@ def decrypt_data(data, columns):
             data[column] = f.decrypt(data[column].encode()).decode()
     return data
 
-# Получение данных из файла
-with open('users.json', 'r', encoding='utf-8') as json_data:
-    users = json.load(json_data)
+# просит пользователя ввести число 1 или 2
+choose=int(input("Введите 1 для шифрования, 2 для дешифрования: "))
 
-# Обезличивание данных
-anonymized_users = [anonymize_data(user, ['last_name', 'birth_date', 'address', 'passport_data', 'phone', 'other_data']) for user in users['users']]
-with open('anonymized_users.json', 'w', encoding='utf-8') as file:
-    json.dump(anonymized_users, file, indent=4, ensure_ascii=False)
+# при выборе пользователем 1 то данные он шифрует
+if choose == 1:
+    # Получение данных из файла
+    with open('users.json', 'r', encoding='utf-8') as json_data:
+        users = json.load(json_data)
 
-# Получение обезличенных данных из файла
-with open('anonymized_users.json', 'r', encoding='utf-8') as json_data:
-    anonymized_users = json.load(json_data)
+    # Обезличивание данных
+    anonymized_users = [anonymize_data(user, ['last_name', 'birth_date', 'address', 'passport_data','INN', 'phone', 'other_data']) for user in users['users']]
+    with open('anonymized_users.json', 'w', encoding='utf-8') as file:
+        json.dump(anonymized_users, file, indent=4, ensure_ascii=False)
 
-#запись в эксель файл засшифрованных данных
-dec=pd.DataFrame(anonymized_users).to_excel("anon.xlsx")
+    #запись в эксель файл засшифрованных данных
+    dec=pd.DataFrame(anonymized_users).to_excel("anon.xlsx")
 
-# Расшифровка данных
-decrypted_users = [decrypt_data(user, ['last_name', 'birth_date', 'address', 'passport_data', 'phone', 'other_data']) for user in anonymized_users]
+# при выборе пользователем 2 то данные он дешифровывает
+elif choose == 2:
+    # Получение обезличенных данных из файла
+    with open('anonymized_users.json', 'r', encoding='utf-8') as json_data:
+        anonymized_users = json.load(json_data)
 
-# Запись в файл JSON
-with open('decrypted_users.json', 'w', encoding='utf-8') as file:
-    json.dump(decrypted_users, file, indent=4, ensure_ascii=False)
+    # Расшифровка данных
+    decrypted_users = [decrypt_data(user, ['last_name', 'birth_date', 'address', 'passport_data','INN', 'phone', 'other_data']) for user in anonymized_users]
 
-#запись в эксель файл разсшифрованных данных
-dec=pd.DataFrame(decrypted_users).to_excel("decrypted.xlsx")
+    # Запись в файл JSON
+    with open('decrypted_users.json', 'w', encoding='utf-8') as file:
+        json.dump(decrypted_users, file, indent=4, ensure_ascii=False)
+
+    #запись в эксель файл разсшифрованных данных    
+    dec=pd.DataFrame(decrypted_users).to_excel("decrypted.xlsx")
