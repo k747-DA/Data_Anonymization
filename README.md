@@ -68,9 +68,6 @@ $ pip install pandas
     2. `with open('decrypted_users.json', 'w', encoding='utf-8') as file:` - здесь мы записываем расшифрованные данные в файл decrypted_users.json в формате .json;
     3. `dec=pd.DataFrame(decrypted_users).to_excel("decrypted.xlsx"):` - создает DataFrame с расшифрованными данными и сохраняет его в файл Excel decrypted.xlsx.
 
-## Инструкция по использованию 📝
-
-
 ## Презентация 📊
 
 Ссылка на презентацию: [Призентация](https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&)
