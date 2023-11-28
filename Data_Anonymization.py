@@ -47,7 +47,7 @@ if choose == 1:
         users = json.load(json_data)
 
     # Обезличивание данных
-    anonymized_users = [anonymize_data(user, ['last_name', 'birth_date', 'address', 'passport_data','INN', 'phone', 'other_data']) for user in users['users']]
+    anonymized_users = [anonymize_data(user, ['last_name', 'patronymic', 'birth_date', 'address', 'passport_data','INN', 'phone', 'other_data']) for user in users['users']]
     with open('anonymized_users.json', 'w', encoding='utf-8') as file:
         json.dump(anonymized_users, file, indent=4, ensure_ascii=False)
 
@@ -61,7 +61,7 @@ elif choose == 2:
         anonymized_users = json.load(json_data)
 
     # Расшифровка данных
-    decrypted_users = [decrypt_data(user, ['last_name', 'birth_date', 'address', 'passport_data','INN', 'phone', 'other_data']) for user in anonymized_users]
+    decrypted_users = [decrypt_data(user, ['last_name', 'patronymic', 'birth_date', 'address', 'passport_data','INN', 'phone', 'other_data']) for user in anonymized_users]
 
     # Запись в файл JSON
     with open('decrypted_users.json', 'w', encoding='utf-8') as file:
