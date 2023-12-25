@@ -120,8 +120,5 @@ $ pip install pandas
 
 Ссылка на презентацию 2 группы: [Призентация 2 группы](https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&)
 
-## Ссылки 👨‍💻
-Задача 1 группы: [ИС-проект базы данных](https://github.com/AhmetshaLee/IS-database-project#is-database-project)
-
-## Спасибо за внимание!
+## Спасибо за внимание!!! 👨‍💻
 ![image](https://github.com/k747-DA/Data_Anonymization/blob/main/img/caramelldansen-caramelldansen-cat.gif)
