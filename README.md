@@ -120,5 +120,9 @@ $ pip install pandas
 
 Ссылка на презентацию 2 группы: [Призентация 2 группы](https://docs.google.com/presentation/d/1tCGOnWw2tFFuYsGEm9Hs45owa1jznmdL/edit?usp=sharing&)
 
+## Презентация 📊
+
+Ссылка на статью по проекту: [Статья](https://vk.com/@-40539619-zaschita-proekta-po-kursu-ib-gruppa-pi-3ivt211b)
+
 ## Спасибо за внимание!!! 👨‍💻
 ![image](https://github.com/k747-DA/Data_Anonymization/blob/main/img/caramelldansen-caramelldansen-cat.gif)
